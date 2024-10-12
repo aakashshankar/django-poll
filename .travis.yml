@@ -1,38 +1,27 @@
 language: python
-
 python:
-  - "3.11"
-
+- '3.11'
 dist: focal
-
 install:
-  - pip install -r requirements.txt
-
+- pip install -r requirements.txt
 before_script:
-  - python manage.py migrate
-
+- python manage.py migrate
 script:
-  - black . --check
-  - flake8 .
-  - coverage run --source=mysite,polls manage.py test
-
+- black . --check
+- flake8 .
+- coverage run --source=mysite,polls manage.py test
 after_script:
-  - coveralls
-
+- coveralls
 deploy:
   provider: elasticbeanstalk
-  edge: true
-  script:
-    - dpl --provider=elasticbeanstalk --debug
-  on:
-    branch: master
-  access_key_id:
-    secure: "ukp0tV/aFU5N/3CQJEi/i8Au+b3GLAvBsKDtfW0scbcFPad59ld+z2YE7gbho5LNFgdQLofFvLCA8Ymm2bSJTetlxcS6lOd4tP7U6P4NHJcWXY2gLshRQjYm5YwVsN+eW3fUilutT7+A+n37+dvnZa0PoyvhbZV5PeViOP6CSQiiuNdPv0valoDm9uYh0BhoGEH4HJXdA0r3Ld1O3p6Wy2PE12crjx7BceWUG02KbsqJjLmKVsAi8Gi4vaL4mCLwyEofsF5BoEG2nH7vrnYmzn1SHZ8gkR5US5Xaz1bJ1Ja67atArp2FQA7tfjoEz1CFVlf7K57a/8lJXSQPqZqlPsyfl84y+mf53tO+42ZTzcCXHPcl7mfJXE5YJwBI1VqYOp5l/qTauUZRVyJam/H0A/Ulq3slZaakkmzzdpOQJGnPX1OtH7jn2C0LVlfin5WgqXSgAXC0A/JTxad73K9awZlLyHadMG5y85EknbrUzaFUrVyAJlT9goWZB3DO+eeEru+lQWLCbqey6wDDpUOh9SjvoRJZSi6laMkIf9qoBaJhXmUQKTcs9WUUhlZp2hGHqqJdKwcIhAT58e+dB8eY8E7oq7MVoLdFz0e+r3Nz7YxfJMNDS7B+kt+RIfEgYaugB47XeMeAX9Oky3sjaJlhgO55+Fvm9RfMrFGnwcoN2wA="
+  access_key_id: AKIASIVGLIREEH5ANU3M
   secret_access_key:
-    secure: "iNYdGAvagwK++GVtrqs7Vo5xCQOyyepznNvPmTAO5Gl3eUGeXGS7M2IOr2alThD4de8Lbjgybfsv3jLVzEnESU9Wc9N9ViI6vSZzOAACdwQyzpvgpASk/2ZoZMF5RAKgOGk+Z12b2TnXxvYTeinSNwgvMDZzUUxDCNgqSasu8ZiPMD8iq3DlVoHcbTbAauvcoyRU/GZNXkynSfQTTl2P+4YEi3dy5qQx0h+9DkSbdloPIfJVId0o45Dn1N15w9zNMfclz/hMiq3kdDCpRhvzYjRP7G1nvT/vfB0yBoGiEEkPHLDaFu9NM41yvdc20sFwtKzn5A/61IdZ+JbjV+CEfzqoLxsyGrfnevXlYSa9NpkHTG15iSa/+lc62zcRa9NWahiJouov418LiSwV0aZ5q35joUQWRBRefPdIXrr3cUhYFe1VT2pbkgy3ljTT3RFhwXSVvindANHkZWm8WrJ9WLZibmgncMMnfM6Yru/cK0Z9RlGd/ogLdQm1Fpa/uR/Pw+aQVrtdI+TAjDR4q1aJ+L/nhls7a4iIrwv8DKqhNMnyXyUDyl8NAXFlkyzDk2u6BpGsCCYM4M0EecJ3H2L+lP1mf5SHYast2CPbqrOcPC0Ov35vO4jMi6G8EN0CY3cjo1os/MiuK5z7EgdJ6l2eo7g2p+54EJr4phMFphz58Dg="
-  region: "us-east-1"
-  app: "django-poll"
-  env: "django-poll-env"
-  bucket_name: "django-poll-s3"
-  bucket_region: "us-east-1"
-  skip_cleanup: true
+    secure: j8Hgjd55A2jFd0W9Swa1ADVnZ5xOGJ0HRzd43oe/953ca5TPNsZogSLbRrcI4gSeojMNVYvAIweUkWkXYI+Z15uCgyIjsmOqVOhl3zHRlaizDPSWwJMbhtPKpKZHOu76XZgZ1gQe+yvPVOtlNZEXbatRYeZBF8dzEio6D+FfW9PqWNMxCM2P+5nLNe/QNhDp74e7Lq5BPn13HemidP0dxd1z9CH4F0O2UfVWur+VtarHjBmDJHyBzjjPkpiCYi3sANMsQbSxJaJaCXPsIoOrVKjIjLvwGnppBqVLtviZb6miCXrGwW51bZqGKNhz8RY08Ts4fl4BuO/2s1Lxthtv5B3lMykUQPO7IGcogVLbyklPCvssqAX6znAKTvsfu1IvvDb41JgJVa44sDPRSXKs4yO1BbPkj2/5M670v1zb6+6FVbzZUvv3cVnEdGK5KEVUHQkA+iP5+X3m/KhJkesC4NcOWhX4K5Ks+3CXgwHpvHR0vGFDhvUZU2N0bkaIr5DPiJRrKYzDFqkM7vp2axyY9yLaW7TNI/+sv/k1LlAXJnoc4OWs2H8OqIEgR38XCeWucDp76iXSKaZycmAa9erWAyEatDN9A6wcXs0qsPgvpKumLP1W8VyXAEXZLhD7Z5nEX3VlmIEu3wxu7p9B1pIIwrYX3gTzEdeJd2Z9RJaOcS8=
+  region: us-east-1
+  app: django-poll
+  env: django-poll-env
+  bucket_name: django-poll-s3
+  on:
+    repo: aakashshankar/django-poll
+    branch: master
+  skip_cleanup: 'true'
