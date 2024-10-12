@@ -1,17 +1,24 @@
 language: python
+
 python:
 - '3.11'
+
 dist: focal
+
 install:
 - pip install -r requirements.txt
+
 before_script:
 - python manage.py migrate
+
 script:
 - black . --check
 - flake8 .
 - coverage run --source=mysite,polls manage.py test
+
 after_script:
 - coveralls
+
 deploy:
   provider: elasticbeanstalk
   access_key_id: AKIASIVGLIREEH5ANU3M
