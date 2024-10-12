@@ -22,6 +22,8 @@ after_script:
 deploy:
   provider: elasticbeanstalk
   edge: true
+  script:
+    - dpl --provider=elasticbeanstalk --debug
   on:
     branch: master
   access_key_id:
@@ -32,4 +34,5 @@ deploy:
   app: "django-poll"
   env: "django-poll-env"
   bucket_name: "django-poll-s3"
+  bucket_region: "us-east-1"
   skip_cleanup: true
