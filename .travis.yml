@@ -21,6 +21,7 @@ after_script:
 
 deploy:
   provider: elasticbeanstalk
+  edge: true
   on:
     branch: master
   access_key_id:
@@ -31,3 +32,4 @@ deploy:
   app: "django-poll"
   env: "django-poll-env"
   bucket_name: "django-poll-s3"
+  skip_cleanup: true
