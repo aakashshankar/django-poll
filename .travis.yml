@@ -21,9 +21,8 @@ after_script:
 
 deploy:
   provider: elasticbeanstalk
-  access_key_id: AKIASIVGLIREEH5ANU3M
-  secret_access_key:
-    secure: j8Hgjd55A2jFd0W9Swa1ADVnZ5xOGJ0HRzd43oe/953ca5TPNsZogSLbRrcI4gSeojMNVYvAIweUkWkXYI+Z15uCgyIjsmOqVOhl3zHRlaizDPSWwJMbhtPKpKZHOu76XZgZ1gQe+yvPVOtlNZEXbatRYeZBF8dzEio6D+FfW9PqWNMxCM2P+5nLNe/QNhDp74e7Lq5BPn13HemidP0dxd1z9CH4F0O2UfVWur+VtarHjBmDJHyBzjjPkpiCYi3sANMsQbSxJaJaCXPsIoOrVKjIjLvwGnppBqVLtviZb6miCXrGwW51bZqGKNhz8RY08Ts4fl4BuO/2s1Lxthtv5B3lMykUQPO7IGcogVLbyklPCvssqAX6znAKTvsfu1IvvDb41JgJVa44sDPRSXKs4yO1BbPkj2/5M670v1zb6+6FVbzZUvv3cVnEdGK5KEVUHQkA+iP5+X3m/KhJkesC4NcOWhX4K5Ks+3CXgwHpvHR0vGFDhvUZU2N0bkaIr5DPiJRrKYzDFqkM7vp2axyY9yLaW7TNI/+sv/k1LlAXJnoc4OWs2H8OqIEgR38XCeWucDp76iXSKaZycmAa9erWAyEatDN9A6wcXs0qsPgvpKumLP1W8VyXAEXZLhD7Z5nEX3VlmIEu3wxu7p9B1pIIwrYX3gTzEdeJd2Z9RJaOcS8=
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
   region: us-east-1
   app: django-poll
   env: django-poll-env
